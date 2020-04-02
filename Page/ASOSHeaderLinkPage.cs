@@ -20,9 +20,9 @@ namespace ASOSHeaderlink.Page
             Driver = driver;
             PageFactory.InitElements(driver, this);
         }
-        [FindsBy(How = How.LinkText, Using = "Clothing")]
+        [FindsBy(How = How.XPath, Using = "/html[1]/body[1]/div[2]/header[1]/div[4]/div[1]/div[2]/div[2]/nav[1]/div[1]/div[1]/button[3]/span[1]/span[1]")]
         public IWebElement clickonClothing;
-        [FindsBy(How = How.LinkText, Using = "Jeans")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='_2yreb5T _36PJqEn']//div[@class='_2u0LGMW']//ul[@class='_1WUweTj']//li[@class='_1g1PWkA _2SQx27S']//ul[@class='_1PXCics']//li//a[@class='_1cjL45H _2Y7IAa_ CLdGn9X _1XjY6Zd'][contains(text(),'Jeans')]")]
         public IWebElement clickonJeans;
         [FindsBy(How = How.LinkText, Using = "Shoes")]
         public IWebElement clickonShoes;
@@ -34,10 +34,12 @@ namespace ASOSHeaderlink.Page
 
         public void clickHeader(string Link)
         {
+            Task.Delay(2000).Wait();
             switch (Link)
             {
+                 
                 case "Clothing":
-                     clickonClothing.Click();
+                    clickonClothing.Click();
                     break;
                 case "Jeans":
                     clickonJeans.Click();
@@ -58,13 +60,14 @@ namespace ASOSHeaderlink.Page
             }
 
         }
+        // reema
         public void verifyHeaderLink(string Link)
         {
             switch(Link)
             {
                 case "Clothing":
-                    
                     Driver.Url.Contains(JeansUrl).Should().BeTrue();
+
                     break;
                 case "Shoes":
                     Driver.Url.Contains(ShoesUrl).Should().BeTrue();
